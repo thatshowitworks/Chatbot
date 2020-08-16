@@ -7,7 +7,7 @@ from coffeehouse.exception import CoffeeHouseError as CFError
 
 from chatbot import app, LOGGER, CF_API_KEY, NAME
 import chatbot.bot.database.chatbot_db as db
-
+from chatbot.bot.database.chatbot_db import is_rem
 
 CoffeeHouseAPI = API(CF_API_KEY)
 api_client = LydiaAI(CoffeeHouseAPI)
@@ -27,7 +27,7 @@ def help(client, message):
     message.edit_text(HELP_TEXT, parse_mode="md")
     
   
-def add_user(user_id):
+def add(user_id):
     is_user = db.is_user(user_id)
     if not is_user:
         ses = api_client.create_session()
@@ -71,7 +71,8 @@ def chatbot(client, message):
     if not check_message(client, msg):
         return
     user_id = msg.from_user.id
-    if not user_id in db.USERS:
+    add(user_id)
+    if is_rem == 1:
         return
     sesh, exp = db.get_ses(user_id)
     query = msg.text

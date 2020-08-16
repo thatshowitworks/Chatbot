@@ -27,12 +27,7 @@ def help(client, message):
     message.edit_text(HELP_TEXT, parse_mode="md")
     
   
-@app.on_message(Filters.me & Filters.regex("^\.adduser$"))
-def add_user(client, message):
-    if not message.reply_to_message:
-        message.edit_text("Reply to someone to enable chatbot for that person!")
-        return
-    user_id = message.reply_to_message.from_user.id
+def add_user(user_id):
     is_user = db.is_user(user_id)
     if not is_user:
         ses = api_client.create_session()
@@ -42,7 +37,7 @@ def add_user(client, message):
         message.edit_text("AI enabled for user successfully!")
         LOGGER.info(f"AI enabled for user - {user_id}")
     else:
-        message.edit_text("AI is already enabled for this user!")
+        LOGGER.info("AI is already enabled for this user!")
         
 
 @app.on_message(Filters.me & Filters.regex("^\.rmuser$"))
@@ -70,7 +65,7 @@ def check_message(client, msg):
     return False
     
         
-@app.on_message(Filters.text)
+@app.on_message(Filters.text, Filters.private)
 def chatbot(client, message):
     msg = message
     if not check_message(client, msg):

@@ -81,7 +81,7 @@ def check_message(client, msg):
     return False
     
         
-@app.on_message(Filters.text, Filters.private)
+@app.on_message(Filters.text & Filters.private)
 def chatbot(client, message):
     msg = message
     if not check_message(client, msg):

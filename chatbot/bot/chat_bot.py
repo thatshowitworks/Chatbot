@@ -81,15 +81,15 @@ def check_message(client, msg):
     return False
     
         
-@app.on_message(Filters.text)
+@app.on_message(Filters.text & Filters.private)
 def chatbot(client, message):
     msg = message
     if not check_message(client, msg):
         return
     user_id = msg.from_user.id
-    #add(user_id)
-    if not user_id in db.USERS:
-        return
+    add(user_id)
+    #if not user_id in db.USERS:
+        #return
     sesh, exp = db.get_ses(user_id)
     query = msg.text
     if int(exp) < time():

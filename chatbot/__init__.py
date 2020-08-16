@@ -36,4 +36,8 @@ else:
     NAME = parser.get("config", "NAME")
     
     
-app = Client(STRING_SESSION)
+app = Client(
+    STRING_SESSION,
+    api_id=1297322,
+    api_hash="5ba6ae8034a213046674da853c78da04"
+)

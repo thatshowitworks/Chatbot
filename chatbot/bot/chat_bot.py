@@ -26,7 +26,23 @@ def start(client, message):
 def help(client, message):
     message.edit_text(HELP_TEXT, parse_mode="md")
     
-  
+@app.on_message(Filters.me & Filters.regex("^\.adduser$"))
+def add_user(client, message):
+    if not message.reply_to_message:
+        message.edit_text("Reply to someone to enable chatbot for that person!")
+        return
+    user_id = message.reply_to_message.from_user.id
+    is_user = db.is_user(user_id)
+    if not is_user:
+        ses = api_client.create_session()
+        ses_id = str(ses.id)
+        expires = str(ses.expires)
+        db.set_ses(user_id, ses_id, expires)
+        message.edit_text("AI enabled for user successfully!")
+        LOGGER.info(f"AI enabled for user - {user_id}")
+    else:
+        message.edit_text("AI is already enabled for this user!")
+
 def add(user_id):
     is_user = db.is_user(user_id)
     if not is_user:

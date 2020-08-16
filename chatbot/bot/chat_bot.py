@@ -87,8 +87,8 @@ def chatbot(client, message):
     if not check_message(client, msg):
         return
     user_id = msg.from_user.id
-    add(user_id)
-    if is_rem == 1:
+    #add(user_id)
+    if not user_id in db.USERS:
         return
     sesh, exp = db.get_ses(user_id)
     query = msg.text

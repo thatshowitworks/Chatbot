@@ -58,13 +58,14 @@ def get_ses(user_id):
     SESSION.close()
     return sesh, exp
     
-    
+is_rem = 0 
 def rem_user(user_id):
     with INSERTION_LOCK:
         autochat = SESSION.query(Chatbot).get(int(user_id))
+        global is_rem
         if autochat:
             SESSION.delete(autochat)
-            
+            is_rem = 1
         SESSION.commit()
         __load_userid_list()
         

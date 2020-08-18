@@ -25,7 +25,7 @@ if ENV:
     NAME = os.environ.get("NAME")
     TOKEN = os.environ.get("TOKEN")
     API_ID = int(os.environ.get("API_ID"))
-    API_HASH = int(os.environ.get("API_HASH"))
+    API_HASH = os.environ.get("API_HASH")
 else:
     from configparser import ConfigParser
     

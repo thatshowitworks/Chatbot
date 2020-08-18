@@ -15,7 +15,7 @@
       "required": true
     },
     "NAME": {
-      "description": "",
+      "description": "Bot will respond to this name.",
       "required": true
    },
    "addons": [{

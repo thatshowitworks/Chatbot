@@ -19,7 +19,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 ENV = bool(os.environ.get("ENV", False))
 
 if ENV:
-    STRING_SESSION = os.environ.get("STRING_SESSION")
+    #STRING_SESSION = os.environ.get("STRING_SESSION")
     CF_API_KEY = os.environ.get("CF_API_KEY")
     DATABASE_URL = os.environ.get("DATABASE_URL")
     NAME = os.environ.get("NAME")

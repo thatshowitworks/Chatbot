@@ -42,7 +42,9 @@ def check_message(client, msg):
 def chatbot(client, message):
     msg = message
     user_id = msg.from_user.id
-    add(user_id)
+    is_user = db.is_user(user_id)
+    if not is_user:
+       add(user_id)
     #if not user_id in db.USERS:
         #return
     sesh, exp = db.get_ses(user_id)
@@ -65,7 +67,8 @@ def chatbot(client, message):
 def chatbot(client, message):
     msg = message
     user_id = msg.from_user.id
-    add(user_id)
+    if not is_user:
+       add(user_id)
     if not check_message(client, msg):
         return
     sesh, exp = db.get_ses(user_id)

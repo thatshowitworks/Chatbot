@@ -17,7 +17,7 @@
     "NAME": {
       "description": "Bot will respond to this name.",
       "required": true
-   },
+   }},
    "addons": [{
     "plan": "heroku-postgresql",
     "options": {

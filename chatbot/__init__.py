@@ -32,10 +32,12 @@ else:
     parser = ConfigParser()
     parser.read("config.ini")
     
-    STRING_SESSION = parser.get("config", "STRING_SESSION")
+    TOKEN = parser.get("config", "STRING_SESSION")
     CF_API_KEY = parser.get("config", "CF_API_KEY")
     DATABASE_URL = parser.get("config", "DATABASE_URL")
     NAME = parser.get("config", "NAME")
+    API_KEY = int(parser.get("config", "API_KEY"))
+    API_HASH = parser.get("config", "API_HASH")
     
 token = TOKEN
 app_id = API_ID

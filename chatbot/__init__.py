@@ -41,7 +41,7 @@ token = TOKEN
 app_id = API_ID
 app_hash = API_HASH
 app = Client(
-    "chatbot,
+    "chatbot",
     bot_token=token,
     api_id=app_id,
     api_hash=app_hash

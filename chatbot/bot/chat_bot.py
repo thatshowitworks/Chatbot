@@ -67,6 +67,7 @@ def chatbot(client, message):
 def chatbot(client, message):
     msg = message
     user_id = msg.from_user.id
+    is_user = db.is_user(user_id)
     if not is_user:
        add(user_id)
     if not check_message(client, msg):

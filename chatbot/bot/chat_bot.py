@@ -44,8 +44,8 @@ def add_user(client, message):
         message.edit_text("AI is already enabled for this user!")
 
 def add(user_id):
-    is_user = db.is_user(user_id)
-    if not is_user:
+    is_user = 1
+    if not is_user == 2:
         ses = api_client.create_session()
         ses_id = str(ses.id)
         expires = str(ses.expires)
@@ -54,23 +54,7 @@ def add(user_id):
         LOGGER.info(f"AI enabled for user - {user_id}")
     else:
         LOGGER.info("AI is already enabled for this user!")
-        
-
-@app.on_message(Filters.me & Filters.regex("^\.rmuser$"))
-def rem_user(client, message):
-    if not message.reply_to_message:
-        message.edit_text("You've gotta reply to someone!")
-        return
-    user_id = message.reply_to_message.from_user.id
-    is_user = db.is_user(user_id)
-    if not is_user:
-        message.edit_text("AI isn't enabled for this user in the first place!")
-    else:
-        db.rem_user(user_id)
-        message.edit_text("AI disabled for this user successfully!")
-        LOGGER.info(f"AI disabled for user - {user_id}")
-
-
+    
 def check_message(client, msg):
     reply_msg = msg.reply_to_message
     if NAME.lower() in msg.text.lower():

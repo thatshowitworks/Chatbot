@@ -11,7 +11,7 @@
       "required": true
     },
     "TOKEN": {
-      "description": "Your BOT TOKEN from @Botfather,
+      "description": "Your BOT TOKEN from @Botfather",
       "required": true
     },
     "NAME": {

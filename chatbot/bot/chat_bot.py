@@ -19,7 +19,7 @@ Have fun!"""
 
 @app.on_message(Filters.command("start"))
 def start(client, message):
-    app.send_message.(message.chat.id, "I'm alive! :3")
+    app.send_message(message.chat.id, "I'm alive! :3")
 
 
 @app.on_message(Filters.command("help"))

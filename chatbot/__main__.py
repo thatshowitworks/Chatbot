@@ -11,4 +11,4 @@ else:
     "Uses Intellivoid's Coffeehouse API.\n" \
     "Written by @TheRealPhoenix on Telegram.")
     LOGGER.info("Your bot is now online. Check .help for help!")
-   # app.idle()
+    app.idle()

@@ -1,0 +1,32 @@
+{
+  "name": "Chat Bot",
+  "description": "",
+  "env": {
+    "API_ID": {
+      "description": "Get this value from my.telegram.org.",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org.",
+      "required": true
+    },
+    "TOKEN": {
+      "description": "Your BOT TOKEN from @Botfather,
+      "required": true
+    },
+    "NAME": {
+      "description": "Bot will respond when this name is entered",
+      "required": true
+   },
+   "addons": [{
+    "plan": "heroku-postgresql",
+    "options": {
+      "version": "12"
+    }
+  }],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+   ]
+}

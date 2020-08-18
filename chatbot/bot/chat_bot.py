@@ -64,9 +64,10 @@ def chatbot(client, message):
 @app.on_message(Filters.text)
 def chatbot(client, message):
     msg = message
+    user_id = msg.from_user.id
+    add(user_id)
     if not check_message(client, msg):
         return
-    user_id = msg.from_user.id
     sesh, exp = db.get_ses(user_id)
     query = msg.text
     if int(exp) < time():

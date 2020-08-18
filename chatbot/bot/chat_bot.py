@@ -19,12 +19,12 @@ Have fun!"""
 
 @app.on_message(Filters.command("start"))
 def start(client, message):
-    message.edit_text("I'm alive! :3")
+    app.send_message.(message.chat.id, "I'm alive! :3")
 
 
 @app.on_message(Filters.command("help"))
 def help(client, message):
-    message.edit_text(HELP_TEXT, parse_mode="md")
+    message.reply(HELP_TEXT)
    
 def add(user_id):
     is_user = 1

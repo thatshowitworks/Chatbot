@@ -22,6 +22,7 @@
       "description": "Set this to true if using heroku",
       "value": "True",
       "required": true
+    },
     "NAME": {
       "description": "Bot will respond to this name.",
       "required": true

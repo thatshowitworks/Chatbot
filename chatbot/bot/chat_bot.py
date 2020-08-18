@@ -33,7 +33,7 @@ def add(user_id):
         ses_id = str(ses.id)
         expires = str(ses.expires)
         db.set_ses(user_id, ses_id, expires)
-        message.edit_text("AI enabled for user successfully!")
+        message.reply("AI enabled for user successfully!")
         LOGGER.info(f"AI enabled for user - {user_id}")
     else:
         LOGGER.info("AI is already enabled for this user!")

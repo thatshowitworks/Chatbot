@@ -23,7 +23,9 @@ if ENV:
     CF_API_KEY = os.environ.get("CF_API_KEY")
     DATABASE_URL = os.environ.get("DATABASE_URL")
     NAME = os.environ.get("NAME")
-    
+    TOKEN = os.environ.get("TOKEN")
+    API_ID = int(os.environ.get("API_ID"))
+    API_HASH = int(os.environ.get("API_HASH"))
 else:
     from configparser import ConfigParser
     
@@ -35,9 +37,12 @@ else:
     DATABASE_URL = parser.get("config", "DATABASE_URL")
     NAME = parser.get("config", "NAME")
     
-    
+token = TOKEN
+app_id = API_ID
+app_hash = API_HASH
 app = Client(
-    STRING_SESSION,
-    api_id=1297322,
-    api_hash="5ba6ae8034a213046674da853c78da04"
+    "chatbot,
+    bot_token=token,
+    api_id=app_id,
+    api_hash=app_hash
 )

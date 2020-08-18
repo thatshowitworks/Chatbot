@@ -12,20 +12,10 @@ from chatbot.bot.database.chatbot_db import is_rem
 CoffeeHouseAPI = API(CF_API_KEY)
 api_client = LydiaAI(CoffeeHouseAPI)
 
-
-HELP_TEXT = """• Reply `.adduser` to someone to enable the chatbot for that person!
-• Reply `.rmuser` to someone to stop the chatbot for them!
-Have fun!"""
-
 @app.on_message(Filters.command("start"))
 def start(client, message):
-    app.send_message(message.chat.id, "I'm alive! :3")
-
-
-@app.on_message(Filters.command("help"))
-def help(client, message):
-    message.reply(HELP_TEXT)
-   
+    app.send_message(message.chat.id, "I'm alive! :3", reply_to_message_id=message.message_id)
+  
 def add(user_id):
     is_user = 1
     if not is_user == 2:
@@ -48,15 +38,35 @@ def check_message(client, msg):
     return False
     
         
+@app.on_message(Filters.text & Filters.incoming & Filters.private)
+def chatbot(client, message):
+    msg = message
+    user_id = msg.from_user.id
+    add(user_id)
+    #if not user_id in db.USERS:
+        #return
+    sesh, exp = db.get_ses(user_id)
+    query = msg.text
+    if int(exp) < time():
+        ses = api_client.create_session()
+        ses_id = str(ses.id)
+        expires = str(ses.expires)
+        db.set_ses(user_id, ses_id, expires)
+        sesh, exp = ses_id, expires
+        
+    try:
+        msg.reply_chat_action("typing")
+        response = api_client.think_thought(sesh, query)
+        app.send_message(message.chat.id, response, reply_to_message_id=message.message_id)
+    except CFError as e:
+        app.send_message(chat_id=msg.chat.id, text=f"An error occurred:\n`{e}`", parse_mode="md")
+
 @app.on_message(Filters.text)
 def chatbot(client, message):
     msg = message
     if not check_message(client, msg):
         return
     user_id = msg.from_user.id
-    add(user_id)
-    #if not user_id in db.USERS:
-        #return
     sesh, exp = db.get_ses(user_id)
     query = msg.text
     if int(exp) < time():

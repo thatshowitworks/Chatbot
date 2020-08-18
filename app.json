@@ -14,6 +14,14 @@
       "description": "Your BOT TOKEN from @Botfather",
       "required": true
     },
+    "CF_API_KEY": {
+      "description": "Your access key from https://coffeehouse.intellivoid.net/",
+      "required": true
+    },
+    "ENV": {
+      "description": "Set this to true if using heroku",
+      "value": "True",
+      "required": true
     "NAME": {
       "description": "Bot will respond to this name.",
       "required": true

@@ -28,7 +28,7 @@
       "required": true
    }},
    "addons": [{
-    "plan": "Heroku Postgres",
+    "plan": "heroku-postgresql",
     "options": {
       "version": "12"
     }
